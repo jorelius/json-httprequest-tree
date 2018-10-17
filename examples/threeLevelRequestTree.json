@@ -1,0 +1,100 @@
+{
+    "description":"Setup store",
+    "requests": [
+        {
+            "pre": [
+                {
+                    "pre": [
+                        {
+                            "pre": [],
+                            "method":"post",
+                            "url":"http://www.example.com/store",
+                            "payload": {
+                                "headers": [
+                                    {
+                                        "name": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "body": {
+                                    "id":"1234",
+                                    "name":"West Street Books",
+                                    "address": "558 West Street"
+                                }
+                            },
+                            "expectedResult": {
+                                "code": 201,
+                                "headers": [
+                                    {
+                                        "name": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "body": {
+                                    "id":"1234",
+                                    "name":"West Street Books",
+                                    "address": "558 West Street"
+                                }
+                            }
+                        }
+                    ],
+                    "method":"post",
+                    "url":"http://www.example.com/books",
+                    "payload": {
+                        "headers": [
+                            {
+                                "name": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "id":"123",
+                            "storeId":"1234",
+                            "name":"Great Book"
+                        }
+                    },
+                    "expectedResult": {
+                        "code": 201,
+                        "headers": [
+                            {
+                                "name": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "id":"123",
+                            "storeId":"1234",
+                            "name":"Great Book"
+                        }
+                    }
+                }
+            ],
+            "method":"get",
+            "url":"http://www.example.com/books/123",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "comparisonRequest":{
+                "method":"get",
+                "url":"http://test.example.com/books/123"
+            },
+            "expectedResult": {
+                "code": 200,
+                "headers": [
+                    {
+                        "name": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "id":"123",
+                    "storeId":"1234",
+                    "Title":"Great Book"
+                }
+            }
+        }
+    ]
+}
