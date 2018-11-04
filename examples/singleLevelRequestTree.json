@@ -6,31 +6,27 @@
             "method":"get",
             "url":"http://www.example.com/books/123",
             "payload": {
-                "headers": [
-                    {
-                        "name": "Accept",
-                        "value": "application/json"
-                    }
-                ]
-            },
-            "comparisonRequest":{
-                "method":"get",
-                "url":"http://test.example.com/books/123"
+                "headers": {
+                    "Accept": "application/json"
+                }
             },
             "expectedResult": {
                 "code": 200,
                 "payload": {
-                    "headers": [
-                        {
-                            "name": "Content-Type",
-                            "value": "application/json"
-                        }
-                    ],
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
                     "body": {
                         "id":"123",
                         "storeId":"1234",
                         "Title":"Great Book"
                     }
+                }
+            },
+            "metadata": {
+                "comparisonRequest":{
+                    "method":"get",
+                    "url":"http://test.example.com/books/123"
                 }
             }
         }
